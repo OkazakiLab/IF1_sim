@@ -1,0 +1,22 @@
+#tleap_wat.in
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+source leaprc.gaff.mod
+loadamberparams frcmod.phos
+loadamberprep atp.prep
+loadamberprep adp.prep
+loadAmberPrep H2P.prepc
+mol = loadpdb F1-IF1DP_syn120deg_stall_4amber.pdb
+solvatebox mol TIP3PBOX 10.0 
+charge mol
+
+# Volume: 3615267.514 A^3, ions =  326.5
+# Total unperturbed charge: -51.999998
+# K+ = 327 + 26 = 353, Cl- = 327 - 26 = 301
+# charge mol
+
+addIons mol K+ 353
+addIons mol Cl- 301
+Saveamberparm mol F1-IF1DP_syn120deg.ff14SB_ionwat.prmtop F1-IF1DP_syn120deg.ff14SB_ionwat.prmcrd
+savepdb mol F1-IF1DP_syn120deg.ff14SB_ionwat.pdb
+
